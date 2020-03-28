@@ -4,6 +4,7 @@ import "./App.css";
 import Button from "./components/Button";
 import Text from "./components/Text";
 import InputText from "./components/InputText";
+import TableHeader from "./components/TableHeader";
 
 const MainContainer = styled.div`
   background: #cae8d5;
@@ -33,7 +34,9 @@ function App() {
         <Button name="동단위 조회" />
         <Text text="아파트 리스트" />
       </MenuBar>
-      <ContentsContainer></ContentsContainer>
+      <ContentsContainer>
+        <TableHeader />
+      </ContentsContainer>
     </MainContainer>
   );
 }
