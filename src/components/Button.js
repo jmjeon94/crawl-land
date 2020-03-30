@@ -19,16 +19,18 @@ const Container = styled.div`
   }
   transition: 0.3s;
 `;
-function Button({ url, name }) {
-  return (
-    <Container
-      onClick={() => {
-        window.location = url;
-      }}
-    >
-      {name}
-    </Container>
-  );
+function Button({ url, name, request }) {
+  let onClicked = "";
+  if (url) {
+    onClicked = () => {
+      window.location = url;
+    };
+  } else if (request) {
+    onClicked = request;
+  } else {
+    onClicked = () => {};
+  }
+  return <Container onClick={onClicked}>{name}</Container>;
 }
 
 export default Button;
