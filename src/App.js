@@ -81,7 +81,11 @@ function App() {
           />
           <Button name="아파트 번호로 변환" />
           {/* <Text text="동 번호를 입력하세요." size="22" /> */}
-          <InputText value={idDong} setValue={setIdDong} />
+          <InputText
+            value={idDong}
+            setValue={setIdDong}
+            request={onClickGetAptList}
+          />
           <Button name="동단위 아파트 조회" request={onClickGetAptList} />
 
           <Text text="확인 할 항목" size="22"></Text>
