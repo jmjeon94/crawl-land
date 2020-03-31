@@ -38,6 +38,7 @@ const Th = styled.th`
   width: ${props => props.width};
   border-color: lightgray;
   background: lightgray;
+  cursor: pointer;
 `;
 
 function Tables({ data, titles }) {
@@ -46,7 +47,11 @@ function Tables({ data, titles }) {
       <Table>
         {titles.map((title, t_index) =>
           title["isShow"] ? (
-            <Th key={t_index} width={title["width"]}>
+            <Th
+              key={t_index}
+              width={title["width"]}
+              onClick={() => console.log("Refactoring here in 'Table.js'")}
+            >
               {title["type"]}
             </Th>
           ) : (
@@ -81,4 +86,4 @@ function Tables({ data, titles }) {
   );
 }
 
-export default Tables;
+export default React.memo(Tables);

@@ -7,10 +7,10 @@ import InputText from "./components/InputText";
 import Tables from "./components/Table";
 import { Footer, Header } from "./components/Frame";
 import CheckShowTitle from "./components/CheckShowTitle";
+import Loading from "./components/Loading";
 import axios from "axios";
 
 const Root = styled.div`
-  background: #cae8d5;
   height: 100%;
   width: 100%;
 `;
@@ -27,9 +27,13 @@ const MenuBar = styled.div`
 `;
 
 const ContentsContainer = styled.div`
-  /* background: blue; */
+  background: ${props => (props.isLoading ? "#4A554E" : "#cae8d5")};
   overflow: scroll;
   flex: 1;
+  transition: 0.5s;
+
+  /* 로딩 div poisition:absolute를 위함 */
+  position: relative;
 `;
 
 function App() {
@@ -37,22 +41,31 @@ function App() {
 
   const [data, setData] = useState(initialData);
   const [titles, setTitles] = useState(initialTitles);
-  // const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [idDong, setIdDong] = useState("");
 
   const onClickGetAptList = () => {
+    setIsLoading(true);
     axios
       .get("http://localhost:5000/getAptList", {
         params: {
-          NumDong: 1
+          NumDong: idDong
         }
       })
       .then(resp => {
         console.log(resp);
+        // 정상적으로 resp시
         if (resp["data"]["data"]) {
           setData(resp["data"]["data"]);
+          // 아파트 외의 정보가 return되는 경우
         } else {
-          alert("Network Error!");
+          alert(resp["data"]);
         }
+        setIsLoading(false);
+      })
+      .catch(err => {
+        alert(err);
+        setIsLoading(false);
       });
   };
 
@@ -67,15 +80,16 @@ function App() {
             name="네이버 부동산 바로가기"
           />
           <Button name="아파트 번호로 변환" />
-          <Text text="동 번호를 입력하세요." size="22" />
-          <InputText></InputText>
+          {/* <Text text="동 번호를 입력하세요." size="22" /> */}
+          <InputText value={idDong} setValue={setIdDong} />
           <Button name="동단위 아파트 조회" request={onClickGetAptList} />
 
           <Text text="확인 할 항목" size="22"></Text>
           <CheckShowTitle titles={titles} setTitles={setTitles} />
         </MenuBar>
-        <ContentsContainer>
+        <ContentsContainer isLoading={isLoading}>
           <Tables data={data} titles={titles} />
+          {isLoading ? <Loading /> : <></>}
         </ContentsContainer>
       </MainContainer>
       <Footer />
@@ -83,6 +97,7 @@ function App() {
   );
 }
 
+// 총 22개
 const initialTitles = [
   {
     type: "동",
@@ -112,7 +127,7 @@ const initialTitles = [
   {
     type: "세대수",
     width: 50,
-    isShow: true
+    isShow: false
   },
   {
     type: "공급면적",
@@ -136,16 +151,26 @@ const initialTitles = [
   },
   {
     type: "매매가",
-    width: 120,
+    width: 100,
     isShow: true
   },
   {
     type: "전세가",
-    width: 120,
+    width: 100,
     isShow: true
   },
   {
     type: "전세가율",
+    width: 70,
+    isShow: true
+  },
+  {
+    type: "갭",
+    width: 100,
+    isShow: true
+  },
+  {
+    type: "평당가",
     width: 70,
     isShow: true
   },
@@ -167,17 +192,17 @@ const initialTitles = [
   {
     type: "매매",
     width: 50,
-    isShow: true
+    isShow: false
   },
   {
     type: "전세",
     width: 50,
-    isShow: true
+    isShow: false
   },
   {
     type: "월세",
     width: 50,
-    isShow: true
+    isShow: false
   },
   {
     type: "id",

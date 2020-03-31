@@ -33,4 +33,4 @@ function Button({ url, name, request }) {
   return <Container onClick={onClicked}>{name}</Container>;
 }
 
-export default Button;
+export default React.memo(Button);

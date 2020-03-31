@@ -15,4 +15,4 @@ function Text({ text, size }) {
   return <Container size={size + "px"}>{text}</Container>;
 }
 
-export default Text;
+export default React.memo(Text);

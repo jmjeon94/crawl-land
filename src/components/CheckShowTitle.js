@@ -26,10 +26,11 @@ function CheckShowTitle({ titles, setTitles }) {
       )
     );
   };
+
   return (
     <Container>
       {/* id 버튼은 보여주지않음 */}
-      {titles.slice(1, 19).map((title, t_index) => (
+      {titles.slice(0, titles.length - 1).map((title, t_index) => (
         <CheckBtn
           key={t_index}
           isShow={title.isShow}
@@ -42,4 +43,4 @@ function CheckShowTitle({ titles, setTitles }) {
   );
 }
 
-export default CheckShowTitle;
+export default React.memo(CheckShowTitle);
