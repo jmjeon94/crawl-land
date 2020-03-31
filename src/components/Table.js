@@ -45,6 +45,7 @@ function Tables({ data, titles }) {
   return (
     <Container>
       <Table>
+        {/* header(columns) */}
         {titles.map((title, t_index) =>
           title["isShow"] ? (
             <Th
@@ -58,21 +59,21 @@ function Tables({ data, titles }) {
             <></>
           )
         )}
+        {/* tables(contents) */}
         {data.map((row, r_index) => (
           <Tr key={r_index}>
-            {row.map((item, i_index) =>
-              titles[i_index]["isShow"] ? (
-                <Td key={i_index} width={titles[i_index]["width"]}>
-                  {/* 단지명에 네이버 부동산 링크 */}
-                  {i_index === 1 ? (
+            {titles.map((title, t_index) =>
+              title["isShow"] ? (
+                <Td key={t_index} width={title["width"]}>
+                  {title.type === "단지명" ? (
                     <a
-                      href={"https://new.land.naver.com/complexes/" + row[19]}
                       target="_blank"
+                      href={"https://new.land.naver.com/complexes/" + row.id}
                     >
-                      {item}
+                      {row[title.type]}
                     </a>
                   ) : (
-                    item
+                    row[title.type]
                   )}
                 </Td>
               ) : (

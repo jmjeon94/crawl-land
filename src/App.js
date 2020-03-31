@@ -47,16 +47,16 @@ function App() {
   const onClickGetAptList = () => {
     setIsLoading(true);
     axios
-      .get("http://localhost:5000/getAptList", {
+      .get("http://210.97.164.72:5000/getAptList", {
         params: {
           NumDong: idDong
         }
       })
       .then(resp => {
-        console.log(resp);
+        console.log(resp["data"]);
         // 정상적으로 resp시
-        if (resp["data"]["data"]) {
-          setData(resp["data"]["data"]);
+        if (typeof resp["data"] === "object") {
+          setData(resp["data"]);
           // 아파트 외의 정보가 return되는 경우
         } else {
           alert(resp["data"]);
@@ -132,31 +132,31 @@ const initialTitles = [
   {
     type: "공급면적",
     width: 70,
-    isShow: true
+    isShow: false
   },
   {
     type: "공급",
     width: 70,
-    isShow: false
+    isShow: true
   },
   {
     type: "전용면적",
     width: 70,
-    isShow: true
+    isShow: false
   },
   {
     type: "전용",
     width: 70,
-    isShow: false
+    isShow: true
   },
   {
     type: "매매가",
-    width: 100,
+    width: 120,
     isShow: true
   },
   {
     type: "전세가",
-    width: 100,
+    width: 120,
     isShow: true
   },
   {
@@ -177,12 +177,12 @@ const initialTitles = [
   {
     type: "방 수",
     width: 50,
-    isShow: true
+    isShow: false
   },
   {
     type: "화장실 수",
     width: 70,
-    isShow: true
+    isShow: false
   },
   {
     type: "현관구조",
@@ -192,12 +192,12 @@ const initialTitles = [
   {
     type: "매매",
     width: 50,
-    isShow: false
+    isShow: true
   },
   {
     type: "전세",
     width: 50,
-    isShow: false
+    isShow: true
   },
   {
     type: "월세",
