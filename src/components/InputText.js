@@ -23,7 +23,6 @@ function InputText({ value, setValue, request }) {
   };
   const Enter = e => {
     if (e.keyCode === 13) {
-      setValue("");
       request();
     }
   };

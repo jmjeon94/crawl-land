@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { sort } from "../utils/sorting";
 
 const Container = styled.div`
   width: 100%;
@@ -42,6 +43,15 @@ const Th = styled.th`
 `;
 
 function Tables({ data, titles }) {
+  const [upSorted, setUpSorted] = useState(false);
+  const Sort = type => {
+    if (upSorted) {
+      sort(data, type, upSorted);
+    } else {
+      sort(data, type, upSorted);
+    }
+    setUpSorted(!upSorted);
+  };
   return (
     <Container>
       <Table>
@@ -51,7 +61,7 @@ function Tables({ data, titles }) {
             <Th
               key={t_index}
               width={title["width"]}
-              onClick={() => console.log("Refactoring here in 'Table.js'")}
+              onClick={() => Sort(title["type"])}
             >
               {title["type"]}
             </Th>

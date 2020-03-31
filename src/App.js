@@ -42,9 +42,10 @@ function App() {
   const [data, setData] = useState(initialData);
   const [titles, setTitles] = useState(initialTitles);
   const [isLoading, setIsLoading] = useState(false);
-  const [idDong, setIdDong] = useState("");
+  const [idDong, setIdDong] = useState("4113510500");
 
   const onClickGetAptList = () => {
+    setIdDong("");
     setIsLoading(true);
     axios
       .get("http://210.97.164.72:5000/getAptList", {
@@ -53,7 +54,7 @@ function App() {
         }
       })
       .then(resp => {
-        console.log(resp["data"]);
+        // console.log(resp["data"]);
         // 정상적으로 resp시
         if (typeof resp["data"] === "object") {
           setData(resp["data"]);
