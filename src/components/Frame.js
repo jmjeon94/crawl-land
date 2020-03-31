@@ -30,7 +30,7 @@ const FooterContainer = styled.div`
 export function Header() {
   return (
     <HeaderContainer>
-      <h1>아파트 검색기 Ver 0.3</h1>
+      <h1>아파트 검색기 Ver 0.4</h1>
     </HeaderContainer>
   );
 }
