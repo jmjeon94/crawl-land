@@ -35,6 +35,9 @@ function CheckShowTitle({ titles, setTitles }) {
           key={t_index}
           isShow={title.isShow}
           onClick={() => onClick(title.type)}
+          className={title.tooltip ? "tooltip" : ""}
+          // style에서는 color만 인식해서 tooltipText 대안으로 사용
+          color={title.tooltip}
         >
           {title.type}
         </CheckBtn>

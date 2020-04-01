@@ -4,8 +4,8 @@ import { sort } from "../utils/sorting";
 
 const Container = styled.div`
   width: 100%;
+  height: 100%;
   height: 24px;
-  border: 1px solid lightgray;
 `;
 
 const Table = styled.table`
@@ -33,6 +33,8 @@ const Td = styled.td`
   }
 `;
 
+const Thead = styled.thead``;
+
 const Tr = styled.tr``;
 
 const Th = styled.th`
@@ -40,6 +42,10 @@ const Th = styled.th`
   border-color: lightgray;
   background: lightgray;
   cursor: pointer;
+
+  /* fixed headerr */
+  position: sticky;
+  top: 0;
 `;
 
 function Tables({ data, titles }) {
@@ -56,42 +62,48 @@ function Tables({ data, titles }) {
     <Container>
       <Table>
         {/* header(columns) */}
-        {titles.map((title, t_index) =>
-          title["isShow"] ? (
-            <Th
-              key={t_index}
-              width={title["width"]}
-              onClick={() => Sort(title["type"])}
-            >
-              {title["type"]}
-            </Th>
-          ) : (
-            <></>
-          )
-        )}
-        {/* tables(contents) */}
-        {data.map((row, r_index) => (
-          <Tr key={r_index}>
+        <Thead>
+          <Tr>
             {titles.map((title, t_index) =>
               title["isShow"] ? (
-                <Td key={t_index} width={title["width"]}>
-                  {title.type === "단지명" ? (
-                    <a
-                      target="_blank"
-                      href={"https://new.land.naver.com/complexes/" + row.id}
-                    >
-                      {row[title.type]}
-                    </a>
-                  ) : (
-                    row[title.type]
-                  )}
-                </Td>
+                <Th
+                  key={t_index}
+                  width={title["width"]}
+                  onClick={() => Sort(title["type"])}
+                >
+                  {title["type"]}
+                </Th>
               ) : (
                 <></>
               )
             )}
           </Tr>
-        ))}
+        </Thead>
+        {/* tables(contents) */}
+        <tbody>
+          {data.map((row, r_index) => (
+            <Tr key={r_index}>
+              {titles.map((title, t_index) =>
+                title["isShow"] ? (
+                  <Td key={t_index} width={title["width"]}>
+                    {title.type === "단지명" ? (
+                      <a
+                        target="_blank"
+                        href={"https://new.land.naver.com/complexes/" + row.id}
+                      >
+                        {row[title.type]}
+                      </a>
+                    ) : (
+                      row[title.type]
+                    )}
+                  </Td>
+                ) : (
+                  <></>
+                )
+              )}
+            </Tr>
+          ))}
+        </tbody>
       </Table>
     </Container>
   );

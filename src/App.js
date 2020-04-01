@@ -32,6 +32,9 @@ const ContentsContainer = styled.div`
   flex: 1;
   transition: 0.5s;
 
+  border: 1px solid darkgray;
+  box-sizing: border-box;
+
   /* 로딩 div poisition:absolute를 위함 */
   position: relative;
 `;
@@ -117,7 +120,8 @@ const initialTitles = [
   {
     type: "No",
     width: 50,
-    isShow: false
+    isShow: false,
+    tooltip: "같은 아파트 넘버링"
   },
   {
     type: "입주년도",
@@ -137,22 +141,26 @@ const initialTitles = [
   {
     type: "공급면적",
     width: 70,
-    isShow: false
+    isShow: false,
+    tooltip: "단위: ㎡"
   },
   {
     type: "공급",
     width: 70,
-    isShow: true
+    isShow: true,
+    tooltip: "단위: 평"
   },
   {
     type: "전용면적",
     width: 70,
-    isShow: false
+    isShow: false,
+    tooltip: "단위: ㎡"
   },
   {
     type: "전용",
     width: 70,
-    isShow: true
+    isShow: true,
+    tooltip: "단위: 평"
   },
   {
     type: "매매가",
@@ -172,12 +180,14 @@ const initialTitles = [
   {
     type: "갭",
     width: 100,
-    isShow: true
+    isShow: true,
+    tooltip: "최저매매가-최고전세가"
   },
   {
     type: "평당가",
     width: 70,
-    isShow: true
+    isShow: true,
+    tooltip: "최저매매가/평 수"
   },
   {
     type: "방 수",
@@ -192,22 +202,26 @@ const initialTitles = [
   {
     type: "현관구조",
     width: 70,
-    isShow: true
+    isShow: true,
+    tooltip: "복도식/현관식/복합식"
   },
   {
     type: "매매",
     width: 50,
-    isShow: true
+    isShow: true,
+    tooltip: "매매 수"
   },
   {
     type: "전세",
     width: 50,
-    isShow: true
+    isShow: true,
+    tooltip: "전세 수"
   },
   {
     type: "월세",
     width: 50,
-    isShow: false
+    isShow: false,
+    tooltip: "월세 수"
   },
   {
     type: "id",
