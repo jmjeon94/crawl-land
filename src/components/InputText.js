@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  margin-top: auto;
+  margin-top: 20px;
   width: 100%;
 `;
 

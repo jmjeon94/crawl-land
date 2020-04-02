@@ -2,10 +2,16 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
+  position: absolute;
+  bottom: 0px;
+
   margin: 10px 10px;
   border: 1px solid gray;
   border-radius: 5px;
   padding: 5px;
+
+  width: calc(100% - 20px);
+  box-sizing: border-box;
 `;
 const CheckBtn = styled.button`
   background: ${props => (props.isShow ? "#3b6978" : "darkgray")};

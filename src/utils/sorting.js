@@ -1,19 +1,3 @@
-export function sortUpString(arr) {
-  /* 이름순으로 정렬 */
-  arr.sort(function(a, b) {
-    // 오름차순
-    return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
-  });
-  return arr;
-}
-
-export function sortDownString(arr) {
-  arr.sort(function(a, b) {
-    // 내림차순
-    return a.name > b.name ? -1 : a.name < b.name ? 1 : 0;
-  });
-}
-
 export function sort(arr, type, isUp) {
   // 문자 형식
   if (type === "동" || type === "단지명" || type === "현관구조") {

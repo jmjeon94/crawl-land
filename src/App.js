@@ -8,6 +8,7 @@ import Tables from "./components/Table";
 import { Footer, Header } from "./components/Frame";
 import CheckShowTitle from "./components/CheckShowTitle";
 import Loading from "./components/Loading";
+import SelectCity from "./components/SelectCity";
 import axios from "axios";
 
 const Root = styled.div`
@@ -16,14 +17,17 @@ const Root = styled.div`
 `;
 
 const MainContainer = styled.div`
-  height: calc(100% - 140px);
+  height: calc(100% - 100px);
   width: 100%;
   display: flex;
 `;
 
 const MenuBar = styled.div`
   background: #84a9ac;
-  width: 250px;
+  width: 220px;
+
+  /* 확인 할 항목을 하단정렬하기 위해 */
+  position: relative;
 `;
 
 const ContentsContainer = styled.div`
@@ -45,7 +49,7 @@ function App() {
   const [data, setData] = useState(initialData);
   const [titles, setTitles] = useState(initialTitles);
   const [isLoading, setIsLoading] = useState(false);
-  const [idDong, setIdDong] = useState("4113510500");
+  const [idDong, setIdDong] = useState("");
 
   const onClickGetAptList = () => {
     setIdDong("");
@@ -83,8 +87,7 @@ function App() {
             url="https://m.land.naver.com/map/37.482968:127.0634:14:1168010300/APT:JGC/A1:B1:B2"
             name="네이버 부동산 바로가기"
           />
-          <Button name="아파트 번호로 변환" />
-          {/* <Text text="동 번호를 입력하세요." size="22" /> */}
+
           <InputText
             value={idDong}
             setValue={setIdDong}
@@ -92,7 +95,9 @@ function App() {
           />
           <Button name="동단위 아파트 조회" request={onClickGetAptList} />
 
-          <Text text="확인 할 항목" size="22"></Text>
+          <SelectCity setData={setData} setIsLoading={setIsLoading} />
+
+          {/* <Text text="확인 할 항목" size="22"></Text> */}
           <CheckShowTitle titles={titles} setTitles={setTitles} />
         </MenuBar>
         <ContentsContainer isLoading={isLoading}>

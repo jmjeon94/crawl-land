@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const HeaderContainer = styled.div`
   width: 100%;
-  height: 70px;
+  height: 50px;
   background: #84a9ac;
   color: white;
 
@@ -16,7 +16,7 @@ const HeaderContainer = styled.div`
 `;
 const FooterContainer = styled.div`
   width: 100%;
-  height: 70px;
+  height: 50px;
   background: #84a9ac;
 
   display: flex;
