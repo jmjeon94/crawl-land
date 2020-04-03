@@ -88,12 +88,12 @@ function App() {
             name="네이버 부동산 바로가기"
           />
 
-          <InputText
+          {/* <InputText
             value={idDong}
             setValue={setIdDong}
             request={onClickGetAptList}
           />
-          <Button name="동단위 아파트 조회" request={onClickGetAptList} />
+          <Button name="동단위 아파트 조회" request={onClickGetAptList} /> */}
 
           <SelectCity setData={setData} setIsLoading={setIsLoading} />
 

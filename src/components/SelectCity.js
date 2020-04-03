@@ -9,15 +9,17 @@ const Container = styled.div`
   padding-right: 20px;
   margin-top: 20px;
   box-sizing: border-box;
-
-  /* display: flex; */
 `;
 
 const ListContainer = styled.div`
   width: 100%;
-  height: 400px;
+  height: calc(100vh - 480px);
 
   overflow: scroll;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-content: baseline;
 `;
 
 const StartButton = styled.div`
@@ -32,23 +34,32 @@ const StartButton = styled.div`
   justify-content: center;
 
   border-radius: 5px;
-
   margin-bottom: 10px;
+
+  transition: 0.5s;
+  &:hover {
+    background: darkgreen;
+  }
 `;
 const Button = styled.div`
   background: gray;
-  height: 15px;
-  /* width: 50px; */
-  font-size: 13px;
+  height: 20px;
+  width: 80px;
+  font-size: 12px;
 
-  margin-bottom: 5px;
+  margin: 5px;
   cursor: pointer;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border-radius: 10px;
+  border-radius: 8px;
+
+  transition: 0.5s;
+  &:hover {
+    background: lightgray;
+  }
 `;
 
 function SelectCity({ setData, setIsLoading }) {
@@ -67,7 +78,7 @@ function SelectCity({ setData, setIsLoading }) {
       // 시리스트 가져오기
       case 0:
         axios
-          .get("http://0.0.0.0:5000/getIdCities", {
+          .get("http://210.97.164.72:5000/getIdCities", {
             params: { stage: 0, addr: "" }
           })
           .then(resp => {
@@ -76,12 +87,13 @@ function SelectCity({ setData, setIsLoading }) {
               addr: "전국",
               stage: (reqParams.stage += 1)
             });
-          });
+          })
+          .catch(err => alert(err));
         break;
       // 구리스트 가져오기
       case 1:
         axios
-          .get("http://0.0.0.0:5000/getIdAddr", {
+          .get("http://210.97.164.72:5000/getIdAddr", {
             params: {
               addr: selectedAddr,
               stage: reqParams.stage
@@ -97,7 +109,7 @@ function SelectCity({ setData, setIsLoading }) {
         break;
       case 2:
         axios
-          .get("http://0.0.0.0:5000/getIdAddr", {
+          .get("http://210.97.164.72:5000/getIdAddr", {
             params: {
               addr: reqParams.addr + "-" + selectedAddr,
               stage: reqParams.stage
@@ -114,7 +126,7 @@ function SelectCity({ setData, setIsLoading }) {
       case 3:
         setIsLoading(true);
         axios
-          .get("http://0.0.0.0:5000/getIdAddr", {
+          .get("http://210.97.164.72:5000/getIdAddr", {
             params: {
               addr: reqParams.addr + "-" + selectedAddr,
               stage: reqParams.stage
@@ -133,6 +145,10 @@ function SelectCity({ setData, setIsLoading }) {
               addr: "도시선택",
               stage: 0
             });
+          })
+          .catch(err => {
+            setIsLoading(false);
+            alert(err);
           });
         break;
       default:
