@@ -31,7 +31,7 @@ const MenuBar = styled.div`
 `;
 
 const ContentsContainer = styled.div`
-  background: ${props => (props.isLoading ? "#4A554E" : "#cae8d5")};
+  background: ${(props) => (props.isLoading ? "#4A554E" : "#cae8d5")};
   overflow: scroll;
   flex: 1;
   transition: 0.5s;
@@ -57,10 +57,10 @@ function App() {
     axios
       .get("http://210.97.164.72:5000/getAptList", {
         params: {
-          NumDong: idDong
-        }
+          NumDong: idDong,
+        },
       })
-      .then(resp => {
+      .then((resp) => {
         // console.log(resp["data"]);
         // 정상적으로 resp시
         if (typeof resp["data"] === "object") {
@@ -71,7 +71,7 @@ function App() {
         }
         setIsLoading(false);
       })
-      .catch(err => {
+      .catch((err) => {
         alert(err);
         setIsLoading(false);
       });
@@ -115,124 +115,124 @@ const initialTitles = [
   {
     type: "동",
     width: 50,
-    isShow: true
+    isShow: true,
   },
   {
     type: "단지명",
     width: 120,
-    isShow: true
+    isShow: true,
   },
   {
     type: "No",
     width: 50,
     isShow: false,
-    tooltip: "같은 아파트 넘버링"
+    tooltip: "같은 아파트 넘버링",
   },
   {
     type: "입주년도",
     width: 70,
-    isShow: true
+    isShow: true,
   },
   {
     type: "총 세대수",
     width: 70,
-    isShow: true
+    isShow: true,
   },
   {
     type: "세대수",
     width: 50,
-    isShow: false
+    isShow: false,
   },
   {
     type: "공급면적",
     width: 70,
     isShow: false,
-    tooltip: "단위: ㎡"
+    tooltip: "단위: ㎡",
   },
   {
     type: "공급",
     width: 70,
     isShow: true,
-    tooltip: "단위: 평"
+    tooltip: "단위: 평",
   },
   {
     type: "전용면적",
     width: 70,
     isShow: false,
-    tooltip: "단위: ㎡"
+    tooltip: "단위: ㎡",
   },
   {
     type: "전용",
     width: 70,
     isShow: true,
-    tooltip: "단위: 평"
+    tooltip: "단위: 평",
   },
   {
     type: "매매가",
     width: 120,
-    isShow: true
+    isShow: true,
   },
   {
     type: "전세가",
     width: 120,
-    isShow: true
+    isShow: true,
   },
   {
     type: "전세가율",
     width: 70,
-    isShow: true
+    isShow: true,
   },
   {
     type: "갭",
     width: 100,
     isShow: true,
-    tooltip: "최저매매가-최고전세가"
+    tooltip: "최저매매가-최고전세가",
   },
   {
     type: "평당가",
     width: 70,
     isShow: true,
-    tooltip: "최저매매가/평 수"
+    tooltip: "최저매매가/평 수",
   },
   {
     type: "방 수",
     width: 50,
-    isShow: false
+    isShow: false,
   },
   {
     type: "화장실 수",
     width: 70,
-    isShow: false
+    isShow: false,
   },
   {
     type: "현관구조",
     width: 70,
     isShow: true,
-    tooltip: "복도식/현관식/복합식"
+    tooltip: "복도식/현관식/복합식",
   },
   {
     type: "매매",
     width: 50,
     isShow: true,
-    tooltip: "매매 수"
+    tooltip: "매매 수",
   },
   {
     type: "전세",
     width: 50,
     isShow: true,
-    tooltip: "전세 수"
+    tooltip: "전세 수",
   },
   {
     type: "월세",
     width: 50,
     isShow: false,
-    tooltip: "월세 수"
+    tooltip: "월세 수",
   },
   {
     type: "id",
     width: 50,
-    isShow: false
-  }
+    isShow: false,
+  },
 ];
 
 export default App;

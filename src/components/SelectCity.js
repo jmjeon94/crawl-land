@@ -65,11 +65,11 @@ const Button = styled.div`
 function SelectCity({ setData, setIsLoading }) {
   const [reqParams, setReqParams] = useState({
     stage: 0,
-    addr: "동 선택"
+    addr: "동 선택",
   });
   const [cityList, setCityList] = useState([]);
 
-  const getIdAddr = selectedAddr => {
+  const getIdAddr = (selectedAddr) => {
     if (selectedAddr === "init") {
       reqParams.stage = 0;
     }
@@ -79,16 +79,16 @@ function SelectCity({ setData, setIsLoading }) {
       case 0:
         axios
           .get("http://210.97.164.72:5000/getIdCities", {
-            params: { stage: 0, addr: "" }
+            params: { stage: 0, addr: "" },
           })
-          .then(resp => {
+          .then((resp) => {
             setCityList(resp.data);
             setReqParams({
               addr: "전국",
-              stage: (reqParams.stage += 1)
+              stage: (reqParams.stage += 1),
             });
           })
-          .catch(err => alert(err));
+          .catch((err) => alert(err));
         break;
       // 구리스트 가져오기
       case 1:
@@ -96,14 +96,14 @@ function SelectCity({ setData, setIsLoading }) {
           .get("http://210.97.164.72:5000/getIdAddr", {
             params: {
               addr: selectedAddr,
-              stage: reqParams.stage
-            }
+              stage: reqParams.stage,
+            },
           })
-          .then(resp => {
+          .then((resp) => {
             setCityList(resp.data);
             setReqParams({
               addr: selectedAddr,
-              stage: reqParams.stage + 1
+              stage: reqParams.stage + 1,
             });
           });
         break;
@@ -112,14 +112,14 @@ function SelectCity({ setData, setIsLoading }) {
           .get("http://210.97.164.72:5000/getIdAddr", {
             params: {
               addr: reqParams.addr + "-" + selectedAddr,
-              stage: reqParams.stage
-            }
+              stage: reqParams.stage,
+            },
           })
-          .then(resp => {
+          .then((resp) => {
             setCityList(resp.data);
             setReqParams({
               addr: reqParams.addr + "-" + selectedAddr,
-              stage: reqParams.stage + 1
+              stage: reqParams.stage + 1,
             });
           });
         break;
@@ -129,10 +129,10 @@ function SelectCity({ setData, setIsLoading }) {
           .get("http://210.97.164.72:5000/getIdAddr", {
             params: {
               addr: reqParams.addr + "-" + selectedAddr,
-              stage: reqParams.stage
-            }
+              stage: reqParams.stage,
+            },
           })
-          .then(resp => {
+          .then((resp) => {
             if (typeof resp["data"] === "object") {
               setData(resp["data"]);
               // 아파트 외의 정보가 return되는 경우
@@ -143,10 +143,10 @@ function SelectCity({ setData, setIsLoading }) {
             setCityList([]);
             setReqParams({
               addr: "도시선택",
-              stage: 0
+              stage: 0,
             });
           })
-          .catch(err => {
+          .catch((err) => {
             setIsLoading(false);
             alert(err);
           });
