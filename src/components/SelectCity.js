@@ -88,7 +88,7 @@ function SelectCity({ setData, setIsLoading }) {
               stage: (reqParams.stage += 1),
             });
           })
-          .catch((err) => alert(err));
+          .catch((err) => alert("Error:", err));
         break;
       // 구리스트 가져오기
       case 1:
