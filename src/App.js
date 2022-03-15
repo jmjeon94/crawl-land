@@ -55,7 +55,7 @@ function App() {
     setIdDong("");
     setIsLoading(true);
     axios
-      .get("http://210.97.164.72:5000/getAptList", {
+      .get("http://110.9.16.75:5001/getAptList", {
         params: {
           NumDong: idDong,
         },

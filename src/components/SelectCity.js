@@ -78,7 +78,7 @@ function SelectCity({ setData, setIsLoading }) {
       // 시리스트 가져오기
       case 0:
         axios
-          .get("http://210.97.164.72:5000/getIdCities", {
+          .get("http://110.9.16.75:5001/getIdCities", {
             params: { stage: 0, addr: "" },
           })
           .then((resp) => {
@@ -93,7 +93,7 @@ function SelectCity({ setData, setIsLoading }) {
       // 구리스트 가져오기
       case 1:
         axios
-          .get("http://210.97.164.72:5000/getIdAddr", {
+          .get("http://110.9.16.75:5001/getIdAddr", {
             params: {
               addr: selectedAddr,
               stage: reqParams.stage,
@@ -109,7 +109,7 @@ function SelectCity({ setData, setIsLoading }) {
         break;
       case 2:
         axios
-          .get("http://210.97.164.72:5000/getIdAddr", {
+          .get("http://110.9.16.75:5001/getIdAddr", {
             params: {
               addr: reqParams.addr + "-" + selectedAddr,
               stage: reqParams.stage,
@@ -126,7 +126,7 @@ function SelectCity({ setData, setIsLoading }) {
       case 3:
         setIsLoading(true);
         axios
-          .get("http://210.97.164.72:5000/getIdAddr", {
+          .get("http://110.9.16.75:5001/getIdAddr", {
             params: {
               addr: reqParams.addr + "-" + selectedAddr,
               stage: reqParams.stage,
